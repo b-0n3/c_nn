@@ -19,8 +19,8 @@ t_array_list *new_array_list(t_array_list *this, size_t first_size, size_t __siz
 		this->free = &_free;
 		this->update_at = &update_at;   
 		this->swap = &ft_swap;
-		this->pull = &pop;
-		this->pull_i=&pop_index;
+		this->pop = &pop;
+		this->pop_i=&pop_index;
 		return this;
 	}
 	return NULL;

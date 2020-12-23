@@ -37,7 +37,7 @@ t_bool update_at(t_array_list *this, void *value, size_t index)
 
 void *get(t_array_list *this, size_t index)
 {
-	if (this->index > index && index >= 0)
+	if (this->index > index)
 		return  this->arr[index];
 	return NULL;
 }
@@ -50,10 +50,10 @@ void _free(t_array_list *this, void (*fe)(void *item))
 
 	free(this->arr);     
 }
-t_bool push_all(t_array_list *this, t_array_list original){
+t_bool push_all(t_array_list *this, t_array_list *original){
 	if ( this == NULL && original == NULL)
 		return FALSE;
-	if (this->size_of_object != original->size_of_object)
+//if (this->size_of_object != original->size_of_object)
 		return FALSE;
 	
 	
