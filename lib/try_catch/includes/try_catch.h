@@ -3,16 +3,24 @@
 #include <setjmp.h>
 #include <stdlib.h>
 
+//* @see ../tests/test
+
+
+
 // used by macros for RAISE'd errors
 extern jmp_buf * __TRY_CATCH_LIB__raise_env;
 // used by macros for RETRY
 extern jmp_buf * __TRY_CATCH_LIB__retry_env;
 
-// list of predefined  codes
+// list of predefined  codekt˚
 // todo: add more exceptions
 enum {
   MALLOC_EXCEPTION = 0x80000000,// RAISE'd when malloc() == NULL in rmalloc()
-  RETRY_EXCEPTION               // RAISE'd when RETRY not within a CATCH block
+  RETRY_EXCEPTION  ,             // RAISE'd when RETRY not within a CATCH block
+  ILLEGAL_ARGUMENT_EXCEPTION = 0x90000000, 
+  ILLEGAL_STATE_EXCEPTION = 0x10000000,
+  INDEX_OUT_OF_BOUNDS_EXCEPTION = 0x1200000,
+  NULL_POINTER_EXCEPTION = 0x11111000
 };
 
 // When below a TRY block in the call stack

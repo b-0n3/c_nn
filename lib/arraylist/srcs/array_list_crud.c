@@ -50,11 +50,14 @@ void _free(t_array_list *this, void (*fe)(void *item))
 
 	free(this->arr);     
 }
-t_bool push_all(t_array_list *this, t_array_list *original){
-	if ( this == NULL && original == NULL)
-		return FALSE;
-//if (this->size_of_object != original->size_of_object)
-		return FALSE;
+
+t_bool push_all(t_array_list *this, t_array_list original){
 	
-	
+	void *item;
+
+	if (this == NULL || this->size_of_object != original.size_of_object)
+		RAISE(ILLEGAL_ARGUMENT_EXCEPTION);
+	while ( ( item = original.pull()) != NULL)
+		this->push(this, item , original.size_of_object);
+	return TRUE;
 }

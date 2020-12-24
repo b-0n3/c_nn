@@ -1,13 +1,13 @@
 NAME = arraylist.a	
 SRC = ./srcs/array_list.c ./srcs/array_list_crud.c ./srcs/array_list_delete_if.c ./srcs/array_list_operation.c ./srcs/array_list_sort.c ./srcs/array_list.c
-INC = ./includes/	
+INC = ./includes/ 
 OBJ= $(SRC:.c=.o)
 CC = gcc	
-FLAGS= -Wall -Werror -Wextra 	
+#FLAGS= -Wall -Werror -Wextra 	
 PARA  = -c	
 
 %.o: %.c
-	$(CC) $(PARA) -I $(INC) $(FLAGS) -o $@  $<
+	$(CC) $(PARA) -I $(INC) -I../try_catch/includes/ $(FLAGS) -o $@  $<
 
 all: $(NAME)	
 

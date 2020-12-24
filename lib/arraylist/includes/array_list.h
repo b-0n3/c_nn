@@ -7,6 +7,7 @@
 # include <stdio.h>
 
 # include <stdlib.h>
+#include "try_catch.h"
 #ifndef FT_BOOL_H
 # define FT_BOOL_H
 typedef int  t_bool;
@@ -20,7 +21,8 @@ typedef struct s_array_list{
         size_t size_of_object;
         t_bool (*push)(struct s_array_list *this, void *value ,size_t size_of_item);
         t_bool (*push_all)(struct s_array_list *this, struct s_array_list original);
-        t_bool (*push_clone)(struct s_array_list *this, struct s_array_list original);
+        t_bool (*push_clone)(struct s_array_list *this, struct s_array_list original,
+                         t_bool is_not_primitive, void *(*__clone)(void *item));
         void *(*get)(struct s_array_list *this, size_t index);
         t_bool (*check_size)(struct s_array_list *this);
         t_bool (*check_data_type)(struct s_array_list *this,  size_t size_of_item);
@@ -40,8 +42,9 @@ typedef struct s_array_list{
 
 t_array_list *new_array_list(t_array_list *this, size_t first_size, size_t __sizeofit);
 t_bool push(t_array_list *this, void *value, size_t size_of_item);
-t_bool push_all(t_array_list *this, t_array_list *original);
-t_bool (*push_clone)(t_array_list *this, t_array_list *original);
+t_bool push_all(t_array_list *this, t_array_list original);
+t_bool push_clone(t_array_list *this, t_array_list original,
+t_bool is_not_primitive, void *(*__clone)(void *item));
 void *get(t_array_list *this, size_t  index);
 t_bool check_size(t_array_list *this);
 t_bool check_data_type(t_array_list *this,  size_t size_of_item);
