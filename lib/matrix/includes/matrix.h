@@ -12,8 +12,10 @@ typedef struct s_matrix
   int cols;
   int rows;
   void (*add)(struct s_matrix *this, double n);
-  void (*add_matrix)(struct s)
+  void (*add_matrix)(struct s_matrix *this , struct s_matrix m);
   void (*sub)(struct s_matrix *this, double n);
+  void (*sub_matrix)(struct s_matrix *this,struct s_matrix m);
+  void (*multiply)(struct s_matrix *this,double n);
 }             t_matrix;
 
 t_matrix *new_matrix(int row, int cols);
