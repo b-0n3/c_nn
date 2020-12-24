@@ -13,12 +13,20 @@ typedef struct s_matrix
   int rows;
   void (*add)(struct s_matrix *this, double n);
   void (*add_matrix)(struct s_matrix *this , struct s_matrix m);
-  void (*sub)(struct s_matrix *this, double n);
-  void (*sub_matrix)(struct s_matrix *this,struct s_matrix m);
+  void (*subtract)(struct s_matrix *this, double n);
+  void (*subtract_matrix)(struct s_matrix *this,struct s_matrix m);
   void (*multiply)(struct s_matrix *this,double n);
+  void (*multiply_matrix)(struct s_matrix *this, struct s_matrix o);
+  double *(*to_array)(struct s_matrix *this);
+  void (*transpose)(struct s_matrix *this);
+  void (*map)(struct s_matrix *this, )
+  void (*free)(struct s_matrix *this);
 }             t_matrix;
 
 t_matrix *new_matrix(int row, int cols);
 t_matrix *from_array(double array, int array_size);
 t_matrix *from_array_list(t_array_list array);
+t_matrix *multiply_matrix_s(t_matrix m1, t_matrix m2);
+t_matrix *transpose_s(t_matrix m);
+
 #endif
