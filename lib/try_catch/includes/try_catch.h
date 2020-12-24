@@ -2,9 +2,18 @@
 #define TRY_CATCH_H
 #include <setjmp.h>
 #include <stdlib.h>
+#include <stdio.h>
+// @Author b0n3@1337
 
 //* @see ../tests/test
 
+// ! if you are using vs code make sure to install
+// ! (better comments) extension  for better comments readability.
+
+// ! please define these global variables every time you want to user try or catch 
+// ! jmp_buf * __TRY_CATCH_LIB__raise_env = NULL;
+// ! jmp_buf * __TRY_CATCH_LIB__retry_env = NULL;
+// ! exception  (int)
 
 
 // used by macros for RAISE'd errors
@@ -15,12 +24,22 @@ extern jmp_buf * __TRY_CATCH_LIB__retry_env;
 // list of predefined  codekt˚
 // todo: add more exceptions
 enum {
-  MALLOC_EXCEPTION = 0x80000000,// RAISE'd when malloc() == NULL in rmalloc()
-  RETRY_EXCEPTION  ,             // RAISE'd when RETRY not within a CATCH block
-  ILLEGAL_ARGUMENT_EXCEPTION = 0x90000000, 
-  ILLEGAL_STATE_EXCEPTION = 0x10000000,
-  INDEX_OUT_OF_BOUNDS_EXCEPTION = 0x1200000,
-  NULL_POINTER_EXCEPTION = 0x11111000
+  MALLOC_EXCEPTION = 1,// RAISE'd when malloc() == NULL in rmalloc()
+  RETRY_EXCEPTION =2 ,             // RAISE'd when RETRY not within a CATCH block
+  ILLEGAL_ARGUMENT_EXCEPTION = 3, 
+  ILLEGAL_STATE_EXCEPTION = 4,
+  INDEX_OUT_OF_BOUNDS_EXCEPTION = 5,
+  NULL_POINTER_EXCEPTION = 6
+};
+
+char errors[7][30]  = {
+    "",
+    "MALLOC_EXCEPTION",
+    "RETRY_EXCEPTION",
+    "ILLEGAL_ARGUMENT_EXCEPTION",
+    "ILLEGAL_STATE_EXCEPTION",
+    "INDEX_OUT_OF_BOUNDS_EXCEPTION",
+    "NULL_POINTER_EXCEPTION"
 };
 
 // When below a TRY block in the call stack
@@ -31,12 +50,13 @@ enum {
 //
 // NOTE:the given exception must be non-zero,
 //      otherwise, the behaviour is undefined
-#define RAISE(exception) do {\
+#define RAISE(exception)  \
   if (__TRY_CATCH_LIB__raise_env)\
     longjmp(*__TRY_CATCH_LIB__raise_env,exception);\
-  else\
+  else{\
+    printf("%s" , errors[exception]);\
     exit(exception);\
-} while (0)
+  }
 
 // When below a CATCH block in the call stack
 //      rerun the paired TRY block
@@ -104,7 +124,11 @@ enum {
       int const exception = __TRY_CATCH_LIB__exception;\
       \
       __TRY_CATCH_LIB__raise_env = &__TRY_CATCH_LIB__catch_raise_env;\
-      __TRY_CATCH_LIB__retry_env = &__TRY_CATCH_LIB__try_retry_env;
+      __TRY_CATCH_LIB__retry_env = &__TRY_CATCH_LIB__try_retry_env;\
+    }\
+  }\
+  }while(0);
+
 
 // The CATCH macro allows a block of code
 //    to be run conditionally on a matching

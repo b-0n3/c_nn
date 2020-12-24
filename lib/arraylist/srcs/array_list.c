@@ -2,7 +2,7 @@
 
 t_array_list *new_array_list(t_array_list *this, size_t first_size, size_t __sizeofit)
 {
-	this->arr = (void *)malloc ( first_size * __sizeofit);
+	this->arr = rmalloc ( first_size * __sizeofit);
 	if (this->arr != NULL)
 	{
 		this->index = 0;
