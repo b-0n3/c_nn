@@ -20,7 +20,7 @@
 extern jmp_buf * __TRY_CATCH_LIB__raise_env;
 // used by macros for RETRY
 extern jmp_buf * __TRY_CATCH_LIB__retry_env;
-
+int  exception = 0;
 // list of predefined  codekt˚
 // todo: add more exceptions
 enum {
@@ -106,6 +106,7 @@ char errors[7][30]  = {
 //  );
 #define TRY(block) do\
 {\
+\
   jmp_buf * const __TRY_CATCH_LIB__old_raise_env = __TRY_CATCH_LIB__raise_env;\
   jmp_buf * const __TRY_CATCH_LIB__old_retry_env = __TRY_CATCH_LIB__retry_env;\
   jmp_buf __TRY_CATCH_LIB__catch_raise_env;\
@@ -123,7 +124,7 @@ char errors[7][30]  = {
       block\
     }\
     else {\
-      int const exception = __TRY_CATCH_LIB__exception;\
+      exception = __TRY_CATCH_LIB__exception;\
       \
       __TRY_CATCH_LIB__raise_env = &__TRY_CATCH_LIB__catch_raise_env;\
       __TRY_CATCH_LIB__retry_env = &__TRY_CATCH_LIB__try_retry_env;\

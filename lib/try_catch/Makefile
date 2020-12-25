@@ -1,6 +1,7 @@
 NAME = try_catch.a	
 SRC = ./srcs/try_catch.c
 INC = ./includes/	
+LIBFT = ../libft/includes/
 OBJ= $(SRC:.c=.o)
 CC = gcc	
 FLAGS= -Wall -Werror -Wextra 	
@@ -22,3 +23,8 @@ fclean: clean
 	rm -f includes/*.*.gch	
 
 re: fclean all
+
+test:
+	$(CC)  -I $(INC) -o test ./tests/test.c
+	echo "testing try/catch"
+	./test
