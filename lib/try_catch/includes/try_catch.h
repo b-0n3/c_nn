@@ -32,6 +32,8 @@ enum {
   NULL_POINTER_EXCEPTION = 6
 };
 
+#ifndef ERRORS_V
+#define ERRORS_V
 char errors[7][30]  = {
     "",
     "MALLOC_EXCEPTION",
@@ -41,7 +43,7 @@ char errors[7][30]  = {
     "INDEX_OUT_OF_BOUNDS_EXCEPTION",
     "NULL_POINTER_EXCEPTION"
 };
-
+#endif
 // When below a TRY block in the call stack
 //      pass the given exception code to the 
 //      paired CATCH blocks

@@ -15,8 +15,7 @@ int exception = 0;
 
 void test_raise()
 {
-  jmp_buf * __TRY_CATCH_LIB__raise_env = NULL;
-jmp_buf * __TRY_CATCH_LIB__retry_env = NULL;
+
 int exception = 0;
    
         printf("inside try  1 \n");
