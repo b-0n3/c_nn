@@ -43,17 +43,11 @@ jmp_buf * __TRY_CATCH_LIB__retry_env = NULL;
     );
 }
 
-void test_finally()
-{
-    
-}
-
 int main()
 {
     
     test_try();
     test_catch();
-    test_finally();
     test_raise();
 
 }

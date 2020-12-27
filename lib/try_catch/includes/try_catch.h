@@ -168,19 +168,6 @@ char errors[7][30]  = {
 // Any exceptions RAISE'd in the finally block are
 //    passed up the call stack to the nearest enclosing
 //    TRY/CATCH/FINALLY block.
-#define FINALLY(block)\
-      {\
-        RAISE(exception);\
-      }\
-    }\
-  }\
-  __TRY_CATCH_LIB__retry_env = __TRY_CATCH_LIB__old_retry_env;\
-  __TRY_CATCH_LIB__raise_env = __TRY_CATCH_LIB__old_raise_env;\
-  block\
-  if (__TRY_CATCH_LIB__reraise) {\
-    RAISE(__TRY_CATCH_LIB__reraise);\
-  }\
-} while(0)
 
 // Convenience method to allocate nbytes.
 // returns a pointer to the allocated memory,
