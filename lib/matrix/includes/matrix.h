@@ -19,7 +19,7 @@ typedef struct s_matrix
   void (*multiply_matrix)(struct s_matrix *this, struct s_matrix o);
   double *(*to_array)(struct s_matrix *this);
   void (*transpose)(struct s_matrix *this);
-  void (*map)(struct s_matrix *this, )
+  void (*map)(struct s_matrix *this,(*double)(double var) );
   void (*free)(struct s_matrix *this);
 }             t_matrix;
 
