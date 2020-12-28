@@ -5,7 +5,7 @@
 #include <stdio.h>
 // @Author b0n3@1337
 
-//* @see ../tests/test
+// @usage: see lib/try_catch/tests/test
 
 // ! if you are using vs code make sure to install
 // ! (better comments) extension  for better comments readability.
