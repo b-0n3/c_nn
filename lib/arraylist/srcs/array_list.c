@@ -9,6 +9,9 @@ t_array_list *new_array_list(t_array_list *this, size_t first_size, size_t __siz
 		this->length = first_size;
 		this->size_of_object = __sizeofit;
 		this->push = &push;
+		this->push_all =  &push_all;
+		this->push_clone = &push_clone;
+	
 		this->get = &get;
 		this->check_size = &check_size;
 		this->check_data_type = &check_data_type;
@@ -21,6 +24,7 @@ t_array_list *new_array_list(t_array_list *this, size_t first_size, size_t __siz
 		this->swap = &ft_swap;
 		this->pop = &pop;
 		this->pop_i=&pop_index;
+		this->clone  = &clone;
 		return this;
 	}
 	return NULL;
