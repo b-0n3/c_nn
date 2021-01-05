@@ -4,7 +4,6 @@
 #ifndef FT_MATRIX_H
 #define FT_MATRIX_H
 #include <math.h>
-#include <string.h>
 #include "array_list.h"
 #include "try_catch.h"
 
