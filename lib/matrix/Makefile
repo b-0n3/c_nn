@@ -22,3 +22,8 @@ fclean: clean
 	rm -f includes/*.*.gch	
 
 re: fclean all
+
+test:
+	$(CC)  -I $(INC) -I $(LIBFT) -I $(TRY_CATCH) $(FLAGS) -o test
+	echo "testing matrix"
+	./test 
