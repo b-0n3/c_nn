@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FT_ARRAY_LIST_H
 # define FT_ARRAY_LIST_H
 
