@@ -1,13 +1,30 @@
-NAME = matrix.a	
-SRC = ./srcs/matrix.c
-INC = ./includes/	
+NAME = lib_matrix.a	
+SRC = 	./srcs/matrix_put_and_get.c \
+				./srcs/matrix_multiply.c \
+				./srcs/matrix_free.c \
+				./srcs/matrix_conversion.c \
+				./srcs/matrix_for_each.c \
+				./srcs/matrix_init.c \
+				./srcs/matrix_subtract.c \
+				./srcs/matrix_map.c \
+				./srcs/matrix_add.c \
+				./srcs/matrix_transpose.c
+
+ARRAY_LIST = ../arraylist/includes/
+TRY_CATCH = ../try_catch/includes/
+LIBFT = ../libft/includes
+INC = ./includes/ \
+			-I $(ARRAY_LIST) \
+			-I $(TRY_CATCH) \
+			-I $(LIBFT)
+
 OBJ= $(SRC:.c=.o)
 CC = gcc	
 FLAGS= -Wall -Werror -Wextra 	
 PARA  = -c	
 
 %.o: %.c
-	$(CC) $(PARA) -I $(INC) $(FLAGS) -o $@ $<
+	$(CC) $(PARA) -I $(INC) -o $@ $<
 
 all: $(NAME)	
 
@@ -22,3 +39,6 @@ fclean: clean
 	rm -f includes/*.*.gch	
 
 re: fclean all
+
+test:
+	$(MAKE) -C ./tests/

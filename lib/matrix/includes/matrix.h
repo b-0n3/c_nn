@@ -1,6 +1,7 @@
 /*
   @autor b-0n3@1337
 */
+#pragma once
 #ifndef FT_MATRIX_H
 #define FT_MATRIX_H
 #include <math.h>
@@ -23,10 +24,10 @@ typedef struct s_matrix
   void (*multiply_matrix)(struct s_matrix *this, struct s_matrix o);
   
   
-  void (*map)(struct s_matrix *this,(*double)(double var) );
-  void (*map_i)(struct s_matrix *this,(*double)(double var, int row_index, int col_index));
-  void (*for_each_i)(struct s_matrix *this , (*void)(double *var , int row_idex , int col_index));
-  void (*for_each)(struct s_matrix *this, (*void )(double *var));
+  void (*map)(struct s_matrix *this,double *(*m)(double var) );
+  void (*map_i)(struct s_matrix *this,double *(*m)(double var, int row_index, int col_index));
+  void (*for_each_i)(struct s_matrix *this , void (*f)(double var , int row_idex , int col_index));
+  void (*for_each)(struct s_matrix *this, void (*f )(double var));
   
 
   void (*transpose)(struct s_matrix *this);
@@ -63,12 +64,12 @@ t_matrix *transpose_s(t_matrix m);
 void transpose(t_matrix *this);
 
 //map
-void matrix_map(t_matrix *this,(*double)(double var) );
-void matrix_map_i(t_matrix *this,(*double)(double var, int row_index, int col_index));
+double matrix_map(t_matrix *this, double (*m)(double var) );
+double matrix_map_i(t_matrix *this,double (*m)(double var, int row_index, int col_index));
 
 // forEach
-void matrix_for_each_i(t_matrix *this , (*void)(double *var , int row_idex , int col_index));
-void matrix_for_each(t_matrix *this, (*void)(double *var));
+void matrix_for_each_i(t_matrix *this , void (*f)(double var , int row_idex , int col_index));
+void matrix_for_each(t_matrix *this, void (*f)(double var));
 
 // conversion
 char *matrix_to_string(t_matrix *this);
