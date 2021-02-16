@@ -12,12 +12,8 @@ t_matrix *new_matrix(int row, int cols){
     matrix->rows = row;
     matrix->cols = cols;
     matrix->data = rmalloc( matrix->rows * sizeof(double *));
-    for (int i =0;i<matrix->rows ; i++)
-    {
-        matrix->data[i] = rmalloc(matrix->cols * sizeof((double*)))
-        for (int j =0;j< matrix->cols;j++)
-            matrix->data[i][j]=rmallocc(sizeof(double));
-    }
+    for (int i =0;i < matrix->rows ; i++)
+        matrix->data[i] = rmalloc(matrix->cols * sizeof(double));
     matrix->put = &matrix_put;
     matrix->get = &matrix_get;
     matrix->add = &matrix_add_n;
@@ -27,11 +23,11 @@ t_matrix *new_matrix(int row, int cols){
     matrix->multiply = &matrix_multiply_n;
     matrix->multiply_matrix = &multiply_matrix;
     matrix->map = &matrix_map;
-    matrix->mapi = &matrix_map_i;
+    matrix->map_i = &matrix_map_i;
     matrix->for_each_i = &matrix_for_each_i; 
     matrix->for_each = &matrix_for_each;
     matrix->transpose = &transpose;
-    mattix->to_string  = &matrix_to_string;
+    matrls ix->to_string  = &matrix_to_string;
     matrix->to_array = &matrix_to_array;
     matrix->free = &free_matrix;
 
@@ -45,8 +41,16 @@ t_matrix *new_matrix(int row, int cols){
 // ! @throws ILLEGAL_ARGUMENT_EXCEPTION if array == NULL || array_size <=0
 // ! @throws MALLOC_EXCEPTION
 t_matrix *from_array(double *array, int array_size){
+  t_matrix *matrix;
 
+  if (array == NULL)
+    RAISE(NULL_POINTER_EXCEPTION);
+  matrix = new_matrix(1,array_size);
+  for (int i = 0; i < array_size; i++)
+    matrix->put(matrix, 0, i, array[i]);
+  return matrix;
 }
+
 // ! @see  /lib/arraylist/includes/array_list.h 
 //  @param  array : arrayList contains list of data
 //  array length is stored in array.index 
@@ -57,7 +61,15 @@ t_matrix *from_array(double *array, int array_size){
 // ! @throws ILLEGAL_ARGUMENT_EXCEPTION if  array.index <= 0
 // ! @throws MALLOC_EXCEPTION
 t_matrix *from_array_list(t_array_list array){
+    t_matrix *matrix;
 
+    if (array.arr == NULL)
+      RAISE(NULL_POINTER_EXCEPTION);
+    if (array.size_of_object != sizeof(double))
+      RAISE(ILLEGAL_ARGUMENT_EXCEPTION);
+    matrix = new_matrix(1, array.index);
+    for (int i = 0; i < array.index; i++)
+      matrix->put(matrix, 0, i, *((double *)(array.get(&array, i))));
 }
 
 
