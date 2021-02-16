@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TRY_CATCH_H
 #define TRY_CATCH_H
 #include <setjmp.h>
@@ -20,7 +21,8 @@
 extern jmp_buf * __TRY_CATCH_LIB__raise_env;
 // used by macros for RETRY
 extern jmp_buf * __TRY_CATCH_LIB__retry_env;
-int  exception = 0;
+
+
 // list of predefined  codekt˚
 // todo: add more exceptions
 enum {
@@ -29,19 +31,21 @@ enum {
   ILLEGAL_ARGUMENT_EXCEPTION = 3, 
   ILLEGAL_STATE_EXCEPTION = 4,
   INDEX_OUT_OF_BOUNDS_EXCEPTION = 5,
-  NULL_POINTER_EXCEPTION = 6
+  NULL_POINTER_EXCEPTION = 6,
+  TEST_FAILED_EXCEPTION = 7
 };
 
 #ifndef ERRORS_V
 #define ERRORS_V
-char errors[7][30]  = {
+extern char errors[8][30]  = {
     "",
     "MALLOC_EXCEPTION",
     "RETRY_EXCEPTION",
     "ILLEGAL_ARGUMENT_EXCEPTION",
     "ILLEGAL_STATE_EXCEPTION",
     "INDEX_OUT_OF_BOUNDS_EXCEPTION",
-    "NULL_POINTER_EXCEPTION"
+    "NULL_POINTER_EXCEPTION",
+    "TEST_FAILED_EXCEPTION"
 };
 #endif
 // When below a TRY block in the call stack

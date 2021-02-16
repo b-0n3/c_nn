@@ -10,9 +10,9 @@ PARA  = -c
 %.o: %.c
 	$(CC) $(PARA) -I $(INC) $(FLAGS)  -o $@  $<
 
-all: $(NAME)	
+all: $(NAME)	test
 
-$(NAME): $(OBJ)		
+$(NAME): $(OBJ)	
 	ar rc $(NAME) $(OBJ)	
 
 clean:	
