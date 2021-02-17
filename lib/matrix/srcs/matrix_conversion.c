@@ -6,6 +6,7 @@ char *matrix_to_string(t_matrix *this){
     new_array_list(&string_builder, 5,sizeof(char *));
     if (this == NULL)
       RAISE(NULL_POINTER_EXCEPTION)
+    return NULL;
 }
 
 // @param this :
@@ -16,5 +17,5 @@ char *matrix_to_string(t_matrix *this){
 // @return  array[ this->rows * this->cols] data  [ row 1 , .... , row n] 
 // ! @throw MALLOC_EXCEPTION
 double *matrix_to_array(t_matrix *this){
-
+  return 0;
 }

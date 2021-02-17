@@ -16,5 +16,5 @@ void multiply_matrix(t_matrix *this, t_matrix m){
 // ! @throws ILLEGAL_ARGUMENT_EXCEPTION 
 // ! @throws MALLOC_EXCEPTION
 t_matrix *multiply_matrix_s(t_matrix m1, t_matrix m2){
-
+  return NULL;
 }

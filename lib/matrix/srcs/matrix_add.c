@@ -14,7 +14,8 @@ void matrix_add_n(t_matrix *this, double n)
 // ! @throws ILLEGAL_ARGUMENT_EXCEPTION 
 void add_matrix(t_matrix *this , t_matrix m)
 {
-    if (this == NULL)
+    if (this == NULL || m.data == NULL)
       RAISE(NULL_POINTER_EXCEPTION);
-  
+    if (this->rows != m.rows || this->cols != m.cols)
+      RAISE(ILLEGAL_ARGUMENT_EXCEPTION);
 }

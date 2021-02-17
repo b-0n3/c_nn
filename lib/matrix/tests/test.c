@@ -71,6 +71,21 @@ void  test_add()
     print_sp_line("add passed 1");
 }
 
+void for_each(double val)
+{
+  printf("%0.2f \n", val);
+}
+
+void  test_for_each()
+{
+  assert_eq(g_m != NULL, 1);
+	assert_eq(g_m->cols == COLS, 1);
+	assert_eq(g_m->rows == ROWS, 1);
+  assert_eq(g_m->for_each != NULL, 1);
+  g_m->for_each(g_m, &for_each);
+  print_sp_line("for_each passed!");
+}
+
 void main()
 {
     print_sp_line("init");
@@ -81,5 +96,6 @@ void main()
 		test_get();
     print_sp_line("add");
 		test_add();
-	//	test_for_eache();
+    print_sp_line("for_each");
+		test_for_each();
 }
