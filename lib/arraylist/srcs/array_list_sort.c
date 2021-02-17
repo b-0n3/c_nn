@@ -30,5 +30,4 @@ void sort(t_array_list *this, int (*cond)(void *item1 , void *item2), int  l, in
 		this->sort(this ,cond, l , (pi - 1)); 
 		this->sort(this,cond, (pi + 1) , r ); 
 	} 
-
 }

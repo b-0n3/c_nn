@@ -12,4 +12,4 @@ void test_new_array()
 
 int main(){
 
-}
+}#pragma once

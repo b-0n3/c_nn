@@ -1,9 +1,10 @@
-#pragma once
+
 #ifndef TRY_CATCH_H
 #define TRY_CATCH_H
 #include <setjmp.h>
 #include <stdlib.h>
 #include <stdio.h>
+//#include "errors.h"
 // @Author b0n3@1337
 
 // @usage: see lib/try_catch/tests/test
@@ -35,19 +36,7 @@ enum {
   TEST_FAILED_EXCEPTION = 7
 };
 
-#ifndef ERRORS_V
-#define ERRORS_V
-extern char errors[8][30]  = {
-    "",
-    "MALLOC_EXCEPTION",
-    "RETRY_EXCEPTION",
-    "ILLEGAL_ARGUMENT_EXCEPTION",
-    "ILLEGAL_STATE_EXCEPTION",
-    "INDEX_OUT_OF_BOUNDS_EXCEPTION",
-    "NULL_POINTER_EXCEPTION",
-    "TEST_FAILED_EXCEPTION"
-};
-#endif
+
 // When below a TRY block in the call stack
 //      pass the given exception code to the 
 //      paired CATCH blocks
@@ -60,9 +49,8 @@ extern char errors[8][30]  = {
   if (__TRY_CATCH_LIB__raise_env)\
     longjmp(*__TRY_CATCH_LIB__raise_env,exception);\
   else{\
-    printf("%s" , errors[exception]);\
     exit(exception);\
-  }
+  }  
 
 // When below a CATCH block in the call stack
 //      rerun the paired TRY block

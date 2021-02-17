@@ -102,3 +102,4 @@ void *pop_index(t_array_list *this , size_t index)
 
 	return ptr;
 }
+

@@ -64,5 +64,6 @@ void ft_swap(void **a, void **b);
 t_bool update_at(struct s_array_list *this, void *value, size_t index);
 void *pop(t_array_list *this);
 void *pop_index(t_array_list *this, size_t index);
-t_array_list *(*clone)(t_array_list *this ,t_bool is_not_primitive, void *(*__clone)(void *item));
+t_array_list *clone(t_array_list *this ,t_bool is_not_primitive,
+   void *(*__clone)(void *item));
 #endif

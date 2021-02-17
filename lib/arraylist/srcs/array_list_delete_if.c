@@ -46,3 +46,4 @@ void delete_if(t_array_list *this, t_bool(*cond)(void *item), void (*fe)(void *i
 	}
 	delete_if_free(this, cond, fe,ixx);
 }
+

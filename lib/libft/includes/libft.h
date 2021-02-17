@@ -9,7 +9,7 @@
 /*   Updated: 2019/10/21 09:44:34 by aait-ham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#pragma once
+
 #ifndef FT_LIBFT_H
 # define FT_LIBFT_H
 # include <string.h>

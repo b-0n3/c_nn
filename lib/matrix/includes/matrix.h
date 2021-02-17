@@ -5,9 +5,14 @@
 #ifndef FT_MATRIX_H
 #define FT_MATRIX_H
 #include <math.h>
-#include "array_list.h"
-#include "try_catch.h"
 
+#include "try_catch.h"
+#include "array_list.h"
+
+#ifndef DEFINED
+extern jmp_buf * __TRY_CATCH_LIB__raise_env;
+extern jmp_buf * __TRY_CATCH_LIB__retry_env;
+#endif
 // ToDo : add more matrix math functions 
 typedef struct s_matrix
 {
@@ -22,16 +27,11 @@ typedef struct s_matrix
   void (*subtract_matrix)(struct s_matrix *this,struct s_matrix m);
   void (*multiply)(struct s_matrix *this,double n);
   void (*multiply_matrix)(struct s_matrix *this, struct s_matrix o);
-  
-  
-  void (*map)(struct s_matrix *this,double *(*m)(double var) );
+  void (*map)(struct s_matrix *this, double *(*m)(double var));
   void (*map_i)(struct s_matrix *this,double *(*m)(double var, int row_index, int col_index));
   void (*for_each_i)(struct s_matrix *this , void (*f)(double var , int row_idex , int col_index));
   void (*for_each)(struct s_matrix *this, void (*f )(double var));
-  
-
   void (*transpose)(struct s_matrix *this);
-
   char *(*to_string)(struct s_matrix *this);
   double *(*to_array)(struct s_matrix *this);
   void (*free)(struct s_matrix *this);
@@ -64,8 +64,8 @@ t_matrix *transpose_s(t_matrix m);
 void transpose(t_matrix *this);
 
 //map
-double matrix_map(t_matrix *this, double (*m)(double var) );
-double matrix_map_i(t_matrix *this,double (*m)(double var, int row_index, int col_index));
+void matrix_map(t_matrix *this, double *(*m)(double var) );
+void matrix_map_i(t_matrix *this,double *(*m)(double var, int row_index, int col_index));
 
 // forEach
 void matrix_for_each_i(t_matrix *this , void (*f)(double var , int row_idex , int col_index));

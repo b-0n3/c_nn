@@ -1,3 +1,4 @@
+#pragma once
 #include "array_list.h"
 
 
@@ -9,7 +10,7 @@
 // where you define how to clone your object 
 // @Return  a pointer to a newborn arrayList   
 t_array_list *clone(struct s_array_list *this,
-t_bool is_not_primitive, void *(*__clone)(void *item));
+t_bool is_not_primitive, void *(*__clone)(void *item))
 {
     t_array_list *clone;
     

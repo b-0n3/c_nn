@@ -27,7 +27,7 @@ t_matrix *new_matrix(int row, int cols){
     matrix->for_each_i = &matrix_for_each_i; 
     matrix->for_each = &matrix_for_each;
     matrix->transpose = &transpose;
-    matrls ix->to_string  = &matrix_to_string;
+    matrix->to_string  = &matrix_to_string;
     matrix->to_array = &matrix_to_array;
     matrix->free = &free_matrix;
 
