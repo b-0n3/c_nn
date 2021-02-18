@@ -39,6 +39,7 @@ typedef struct s_array_list
         void (*free)(struct s_array_list *this, void (*fe)(void *item));
         t_bool (*update_at)(struct s_array_list *this, void *value, size_t index);
         void (*swap)(void **a, void **b);
+        t_bool (*empty)(struct s_array_list *this, void (*fe)(void *item));
         void *(*pop)(struct s_array_list *this);
         void *(*pop_i)(struct s_array_list *this, size_t index);
         struct s_array_list *(*clone)(struct s_array_list *this ,t_bool is_not_primitive, void *(*__clone)(void *item));
@@ -66,4 +67,5 @@ void *pop(t_array_list *this);
 void *pop_index(t_array_list *this, size_t index);
 t_array_list *clone(t_array_list *this ,t_bool is_not_primitive,
    void *(*__clone)(void *item));
+t_bool al_empty(t_array_list *this,void (*fe)(void *item));
 #endif

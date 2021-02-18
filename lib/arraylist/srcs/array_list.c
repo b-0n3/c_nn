@@ -25,6 +25,7 @@ t_array_list *new_array_list(t_array_list *this, size_t first_size, size_t __siz
 		this->pop = &pop;
 		this->pop_i=&pop_index;
 		this->clone  = &clone;
+    this->empty = &al_empty;
 		return this;
 	}
 	return NULL;
