@@ -50,6 +50,14 @@ enum {
     longjmp(*__TRY_CATCH_LIB__raise_env,exception);\
   else{\
     exit(exception);\
+  }
+
+#define THROW(exception, message)  \
+  if (__TRY_CATCH_LIB__raise_env)\
+    longjmp(*__TRY_CATCH_LIB__raise_env,exception);\
+  else{\
+    printf("\033[31;1m%s\nset up a breakpoint\n",message);\
+    exit(exception);\
   }  
 
 // When below a CATCH block in the call stack
