@@ -1,20 +1,13 @@
 
 #include "matrix.h"
+#include "test_tools.h"
+
 #define ROWS 5
 #define COLS 5
 
 t_matrix *g_m;
 
-void assert_eq(int eq, int a)
-{
-	if (eq != a)
-		RAISE(TEST_FAILED_EXCEPTION);
-}
 
-void print_sp_line(char *l)
-{
-    printf("\n++++++++ testing %s +++++++++++++\n",l);
-}
 
 void test_init()
 {
@@ -22,7 +15,7 @@ void test_init()
 		assert_eq(g_m != NULL, 1);
 		assert_eq(g_m->cols == COLS, 1);
 		assert_eq(g_m->rows == ROWS, 1);
-    print_sp_line("init passed 1");
+    print_test_passed("init");
 }
 void test_put()
 {
@@ -32,7 +25,7 @@ void test_put()
 	for(int i = 0; i < ROWS; i++)
 		for(int j = 0; j < COLS; j++)
 			g_m->put(g_m, i, j, i * 12.123);
-    print_sp_line("put passed 1");
+    print_test_passed("put");
 }
 void test_get()
 {
@@ -48,7 +41,7 @@ void test_get()
 			assert_eq(value == i * 12.123, 1);
 			printf("row: %d , cols: %d , value: %.4f\n", i , j, value);
 		}
-    print_sp_line("get passed 1");
+    print_test_passed("get");
 }
 
 
@@ -68,7 +61,7 @@ void  test_add()
 			assert_eq(value == (i * 12.123 + 4), 1);
 			printf("row: %d , cols: %d , value: %.4f\n", i , j, value);
 		}
-    print_sp_line("add passed 1");
+    print_test_passed("add");
 }
 
 void for_each(double val)
@@ -83,7 +76,7 @@ void  test_for_each()
 	assert_eq(g_m->rows == ROWS, 1);
   assert_eq(g_m->for_each != NULL, 1);
   g_m->for_each(g_m, &for_each);
-  print_sp_line("for_each passed!");
+  print_test_passed("for_each");
 }
 
 void main()
@@ -98,4 +91,5 @@ void main()
 		test_add();
     print_sp_line("for_each");
 		test_for_each();
+    print_sp_line("map");
 }

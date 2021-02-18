@@ -27,8 +27,8 @@ typedef struct s_matrix
   void (*subtract_matrix)(struct s_matrix *this,struct s_matrix m);
   void (*multiply)(struct s_matrix *this,double n);
   void (*multiply_matrix)(struct s_matrix *this, struct s_matrix o);
-  void (*map)(struct s_matrix *this, double *(*m)(double var));
-  void (*map_i)(struct s_matrix *this,double *(*m)(double var, int row_index, int col_index));
+  void (*map)(struct s_matrix *this, double (*m)(double var));
+  void (*map_i)(struct s_matrix *this,double (*m)(double var, int row_index, int col_index));
   void (*for_each_i)(struct s_matrix *this , void (*f)(double var , int row_idex , int col_index));
   void (*for_each)(struct s_matrix *this, void (*f )(double var));
   void (*transpose)(struct s_matrix *this);
@@ -64,8 +64,8 @@ t_matrix *transpose_s(t_matrix m);
 void transpose(t_matrix *this);
 
 //map
-void matrix_map(t_matrix *this, double *(*m)(double var) );
-void matrix_map_i(t_matrix *this,double *(*m)(double var, int row_index, int col_index));
+void matrix_map(t_matrix *this, double (*m)(double var) );
+void matrix_map_i(t_matrix *this,double (*m)(double var, int row_index, int col_index));
 
 // forEach
 void matrix_for_each_i(t_matrix *this , void (*f)(double var , int row_idex , int col_index));
