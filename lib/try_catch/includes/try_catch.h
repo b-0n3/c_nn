@@ -45,13 +45,6 @@ enum {
 //
 // NOTE:the given exception must be non-zero,
 //      otherwise, the behaviour is undefined
-#define RAISE(exception)  \
-  if (__TRY_CATCH_LIB__raise_env)\
-    longjmp(*__TRY_CATCH_LIB__raise_env,exception);\
-  else{\
-    exit(exception);\
-  }
-
 #define THROW(exception, message)  \
   if (__TRY_CATCH_LIB__raise_env)\
     longjmp(*__TRY_CATCH_LIB__raise_env,exception);\
@@ -59,6 +52,15 @@ enum {
     printf("\033[31;1m%s\nset up a breakpoint\n",message);\
     exit(exception);\
   }  
+
+#define RAISE(exception)  \
+  if (__TRY_CATCH_LIB__raise_env)\
+    longjmp(*__TRY_CATCH_LIB__raise_env,exception);\
+  else{\
+    exit(exception);\
+  }
+
+
 
 // When below a CATCH block in the call stack
 //      rerun the paired TRY block
@@ -158,16 +160,7 @@ enum {
       }\
       else
 
-// The FINALLY macro allows a block to be run after
-//    the paired TRY block and CATCH blocks, whether 
-//    or not it RAISE an exception.
-//
-// The FINALLY macro *must* be paired with a
-//    single TRY block.
-//
-// Any exceptions RAISE'd in the finally block are
-//    passed up the call stack to the nearest enclosing
-//    TRY/CATCH/FINALLY block.
+
 
 // Convenience method to allocate nbytes.
 // returns a pointer to the allocated memory,
