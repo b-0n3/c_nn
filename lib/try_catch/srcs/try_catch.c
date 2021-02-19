@@ -1,6 +1,6 @@
 #include "try_catch.h"
-jmp_buf * __TRY_CATCH_LIB__raise_env = NULL;
-jmp_buf * __TRY_CATCH_LIB__retry_env = NULL;
+extern jmp_buf * __TRY_CATCH_LIB__raise_env;
+extern jmp_buf * __TRY_CATCH_LIB__retry_env;
 
 void * rmalloc(size_t const nbytes)
 {

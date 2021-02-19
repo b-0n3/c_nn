@@ -124,6 +124,7 @@ enum {
     __TRY_CATCH_LIB__retry_env = __TRY_CATCH_LIB__old_retry_env; \
     if (!__TRY_CATCH_LIB__exception || __TRY_CATCH_LIB__retry) {\
       block\
+      __TRY_CATCH_LIB__raise_env = NULL;\
     }\
     else {\
       exception = __TRY_CATCH_LIB__exception;\
@@ -157,6 +158,7 @@ enum {
 #define CATCH(condition, block)\
       if (condition) {\
         block\
+        __TRY_CATCH_LIB__raise_env = NULL;\
       }\
       else
 
