@@ -110,7 +110,7 @@ char 	*sb_to_string(t_string_builder *this){
 		for (int i = 0; i < this->fragments.index ; i++)
 		{
 				fragment = this->fragments.get(&this->fragments, i);
-						printf("frame%d {%s}\n", i, fragment->str);
+				
 				if (fragment != NULL)
 					memcpy(ret + fragment->lenght_before, fragment->str, fragment->length);
 		}
@@ -133,6 +133,6 @@ void	sb_free(t_string_builder *this){
 	{
 		THROW(NULL_POINTER_EXCEPTION, "null pointer exception in sb_free");
 	}
-	this->fragments.free(&this->fragments,&fragment_free);
+	this->fragments.free(&this->fragments, &fragment_free);
 	free(this);
 }
