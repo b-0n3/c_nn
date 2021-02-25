@@ -8,15 +8,18 @@ SRC = 	./srcs/matrix_put_and_get.c \
 				./srcs/matrix_subtract.c \
 				./srcs/matrix_map.c \
 				./srcs/matrix_add.c \
-				./srcs/matrix_transpose.c
+				./srcs/matrix_transpose.c\
+				./srcs/f_random.c
 
 ARRAY_LIST = ../arraylist/includes/
 TRY_CATCH = ../try_catch/includes/
 LIBFT = ../libft/includes
+SB = ../stringbuilder/includes
 INC = ./includes/ \
 			-I $(ARRAY_LIST) \
 			-I $(TRY_CATCH) \
-			-I $(LIBFT)
+			-I $(LIBFT) \
+			-I $(SB)
 
 OBJ= $(SRC:.c=.o)
 CC = gcc	
@@ -24,11 +27,11 @@ FLAGS= -Wall -Werror -Wextra
 PARA  = -c	
 
 %.o: %.c
-	$(CC) $(PARA) -I $(INC) -o $@ $<
+	$(CC) $(PARA) -I $(INC) -g -o  $@ $<
 
-all: $(NAME)	
+all: $(NAME)	test
 
-$(NAME): $(OBJ)		
+$(NAME): $(OBJ) 		
 	ar rc $(NAME) $(OBJ)	
 
 clean:	
@@ -42,3 +45,4 @@ re: fclean all
 
 test:
 	$(MAKE) -C ./tests/
+	./tests/TEST

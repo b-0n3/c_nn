@@ -1,6 +1,10 @@
 #include "matrix.h"
 
 
+extern jmp_buf * __TRY_CATCH_LIB__raise_env;
+// used by macros for RETRY
+extern jmp_buf * __TRY_CATCH_LIB__retry_env;
+
  // ! @see lib/matrix/includes/matrix.h
 // @return new matrix 
 // ! @throws ILLEGAL_ARGUMENT_EXCEPTION if row < 1 || cols < 1

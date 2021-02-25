@@ -8,6 +8,7 @@
 
 #include "try_catch.h"
 #include "array_list.h"
+#include "stringbuilder.h"
 
 #ifndef DEFINED
 extern jmp_buf * __TRY_CATCH_LIB__raise_env;
@@ -78,5 +79,5 @@ double *matrix_to_array(t_matrix *this);
 //free 
 void free_matrix(t_matrix *this);
 
-
+double frandom();
 #endif
