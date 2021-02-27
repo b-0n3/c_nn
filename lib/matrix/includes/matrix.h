@@ -39,6 +39,7 @@ typedef struct s_matrix
 }             t_matrix;
 
 // init 
+void init_matrix(t_matrix *matrix, int row, int cols);
 t_matrix *new_matrix(int row, int cols);
 t_matrix *new_matrix_random_values(int row, int cols);
 t_matrix *from_array(double *array, int array_size);

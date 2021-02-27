@@ -5,6 +5,34 @@ extern jmp_buf * __TRY_CATCH_LIB__raise_env;
 // used by macros for RETRY
 extern jmp_buf * __TRY_CATCH_LIB__retry_env;
 
+void init_matrix(t_matrix *matrix, int row, int cols)
+{
+	if (row < 1 || cols < 1)
+		RAISE(ILLEGAL_ARGUMENT_EXCEPTION);
+	if (matrix == NULL)
+		THROW(NULL_POINTER_EXCEPTION, "null pointer exceptin int matrix:: init_matrix");
+	matrix->rows = row;
+	matrix->cols = cols;
+	matrix->data = rmalloc(matrix->rows * sizeof(double *));
+	for (int i = 0; i < matrix->rows; i++)
+		matrix->data[i] = rmalloc(matrix->cols * sizeof(double));
+	matrix->put = &matrix_put;
+	matrix->get = &matrix_get;
+	matrix->add = &matrix_add_n;
+	matrix->add_matrix = &add_matrix;
+	matrix->subtract = &matrix_subtract_n;
+	matrix->subtract_matrix = &subtract_matrix;
+	matrix->multiply = &matrix_multiply_n;
+	matrix->multiply_matrix = &multiply_matrix;
+	matrix->map = &matrix_map;
+	matrix->map_i = &matrix_map_i;
+	matrix->for_each_i = &matrix_for_each_i;
+	matrix->for_each = &matrix_for_each;
+	matrix->transpose = &transpose;
+	matrix->to_string = &matrix_to_string;
+	matrix->to_array = &matrix_to_array;
+	matrix->free = &free_matrix;
+}
  // ! @see lib/matrix/includes/matrix.h
 // @return new matrix 
 // ! @throws ILLEGAL_ARGUMENT_EXCEPTION if row < 1 || cols < 1
@@ -13,28 +41,7 @@ t_matrix *new_matrix(int row, int cols){
     if (row < 1 || cols < 1)
         RAISE(ILLEGAL_ARGUMENT_EXCEPTION);
     t_matrix *matrix =(t_matrix *) rmalloc(sizeof(t_matrix));
-    matrix->rows = row;
-    matrix->cols = cols;
-    matrix->data = rmalloc( matrix->rows * sizeof(double *));
-    for (int i =0;i < matrix->rows ; i++)
-        matrix->data[i] = rmalloc(matrix->cols * sizeof(double));
-    matrix->put = &matrix_put;
-    matrix->get = &matrix_get;
-    matrix->add = &matrix_add_n;
-    matrix->add_matrix = &add_matrix;
-    matrix->subtract = &matrix_subtract_n;
-    matrix->subtract_matrix = &subtract_matrix;
-    matrix->multiply = &matrix_multiply_n;
-    matrix->multiply_matrix = &multiply_matrix;
-    matrix->map = &matrix_map;
-    matrix->map_i = &matrix_map_i;
-    matrix->for_each_i = &matrix_for_each_i; 
-    matrix->for_each = &matrix_for_each;
-    matrix->transpose = &transpose;
-    matrix->to_string  = &matrix_to_string;
-    matrix->to_array = &matrix_to_array;
-    matrix->free = &free_matrix;
-
+	init_matrix(matrix, row, cols);
 }
 //@retrun new matrix with random values between -1 and 1
 t_matrix *new_matrix_random_values(int row, int cols){
