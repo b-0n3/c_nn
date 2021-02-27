@@ -36,6 +36,14 @@ t_matrix *new_matrix(int row, int cols){
     matrix->free = &free_matrix;
 
 }
+//@retrun new matrix with random values between -1 and 1
+t_matrix *new_matrix_random_values(int row, int cols){
+  t_matrix *matrix;
+  matrix = new_matrix(row, cols);
+  for(int i = 0; i < matrix->rows; i++)
+    for(int j = 0; j < matrix->cols; j++)
+      matrix->put(matrix , i , j, frandom());
+}
 
 // @param array :data
 // @param array_size : array size in bytes

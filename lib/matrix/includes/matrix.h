@@ -40,6 +40,7 @@ typedef struct s_matrix
 
 // init 
 t_matrix *new_matrix(int row, int cols);
+t_matrix *new_matrix_random_values(int row, int cols);
 t_matrix *from_array(double *array, int array_size);
 t_matrix *from_array_list(t_array_list array);
 t_matrix *multiply_matrix_s(t_matrix m1, t_matrix m2);
