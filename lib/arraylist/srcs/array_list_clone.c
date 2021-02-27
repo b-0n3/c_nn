@@ -1,6 +1,5 @@
-#pragma once
-#include "array_list.h"
 
+#include "array_list.h"
 
 // @Author b0n3@1337
 // ! if you clone an ArrayList make sure to
@@ -17,7 +16,7 @@ t_bool is_not_primitive, void *(*__clone)(void *item))
     clone = NULL;
     if (this != NULL)
     {
-        new_array_list(clone, original->length, original->size_of_object);
+        new_array_list(clone, this->length, this->size_of_object);
         clone->push_clone(clone , *this, is_not_primitive , __clone);
     }
     return clone;
