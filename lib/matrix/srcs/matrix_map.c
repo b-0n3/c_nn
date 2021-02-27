@@ -6,7 +6,7 @@ void matrix_map(t_matrix *this, double (*m)(double var) )
 		RAISE(NULL_POINTER_EXCEPTION);
 	for (int  i = 0; i < this->rows; i++)
 		for (int j = 0; j < this->cols; j++)
-				this->data[i][j] = m(this->data[i][j]);
+			this->data[i][j] = m(this->data[i][j]);
 }
 
 
@@ -17,5 +17,5 @@ void matrix_map_i
 		RAISE(NULL_POINTER_EXCEPTION);
 	for (int  i = 0; i < this->rows; i++)
 		for (int j = 0; j < this->cols; j++)
-				this->data[i][j] = m(this->data[i][j], i, j);
+			this->data[i][j] = m(this->data[i][j], i, j);
 }
