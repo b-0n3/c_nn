@@ -76,16 +76,16 @@ void	*get(dynamic_array_t *dyArr, const unsigned int index)
  **/
 void delete(dynamic_array_t *dyArr, const unsigned index)
 {
-    if (!contains(dyArr->size, index))
-        return;
+	if (!contains(dyArr->size, index))
+		return;
 
-    for (unsigned int i = index; i < dyArr->size; i++) {
-        dyArr->items[i] = dyArr->items[i + 1];
-    }
+	for (unsigned int i = index; i < dyArr->size; i++) {
+		dyArr->items[i] = dyArr->items[i + 1];
+	}
 
-    dyArr->size--;
+	dyArr->size--;
 
-    free(dyArr->items[dyArr->size]);
+	free(dyArr->items[dyArr->size]);
 }
 
 /**
@@ -95,11 +95,11 @@ void delete(dynamic_array_t *dyArr, const unsigned index)
  **/
 unsigned	contains(const unsigned size, const unsigned index)
 {
-    if (size >= 0 && index < size)
-        return 1;
+	if (size >= 0 && index < size)
+		return 1;
 
-    printf("index [%d] out of range!\n", index);
-    return 0;
+	printf("index [%d] out of range!\n", index);
+	return 0;
 }
 
 /**
@@ -109,12 +109,12 @@ unsigned	contains(const unsigned size, const unsigned index)
  **/
 void *get_copy_of_value(const void *value)
 {
-    void *value_copy;
+	void *value_copy;
 
 	if (!(value_copy = malloc(sizeof(void *))))
 		return NULL;
 
 	// TODO: Move it to ft_memcpy
-    memcpy(value_copy, value, sizeof(void *));
-    return value_copy;
+	memcpy(value_copy, value, sizeof(void *));
+	return value_copy;
 }
