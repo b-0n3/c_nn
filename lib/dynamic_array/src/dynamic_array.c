@@ -1,5 +1,4 @@
 #include "../includes/dynamic_array.h"
-#include <stdlib.h>
 
 /**
  * @description {*} Initialize a new dynamic Array
@@ -27,7 +26,8 @@ void	*add(dynamic_array_t *dyArr, const void *value)
 {
 	if (dyArr->size >= dyArr->capacity) {
 		void **newItems = realloc(dyArr->items, (dyArr->capacity <<= 1) * sizeof(void **));
-		free(dyArr->items);
+		// I thin this might be a leak !!!
+		// free(dyArr->items);
 
 		dyArr->items = newItems;
 	}
@@ -107,7 +107,7 @@ unsigned	contains(const unsigned size, const unsigned index)
  * @params {value} The value to be copied
  * @returns Pointer to the copyValue
  **/
-void *retrive_copy_of_value(const void *value)
+void *get_copy_of_value(const void *value)
 {
     void *value_copy;
 
