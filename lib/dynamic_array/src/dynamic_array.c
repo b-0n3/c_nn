@@ -1,5 +1,4 @@
 #include "../includes/dynamic_array.h"
-#include <stdlib.h>
 
 /**
  * @description {*} Initialize a new dynamic Array
@@ -27,7 +26,8 @@ void	*add(dynamic_array_t *dyArr, const void *value)
 {
 	if (dyArr->size >= dyArr->capacity) {
 		void **newItems = realloc(dyArr->items, (dyArr->capacity <<= 1) * sizeof(void **));
-		free(dyArr->items);
+		// I thin this might be a leak !!!
+		// free(dyArr->items);
 
 		dyArr->items = newItems;
 	}
@@ -70,6 +70,25 @@ void	*get(dynamic_array_t *dyArr, const unsigned int index)
 }
 
 /**
+ * @description {*} delete the value at the given index
+ * @params {*DyArr, index} A pointer to the dyArr, the wanted index
+ * @returns {*} NONE
+ **/
+void delete(dynamic_array_t *dyArr, const unsigned index)
+{
+    if (!contains(dyArr->size, index))
+        return;
+
+    for (unsigned int i = index; i < dyArr->size; i++) {
+        dyArr->items[i] = dyArr->items[i + 1];
+    }
+
+    dyArr->size--;
+
+    free(dyArr->items[dyArr->size]);
+}
+
+/**
  * @description {*} Check if the range does exists in the Array
  * @params {size, index} the actual size of the DyArr and the index
  * @returns {*} BOOLEAN
@@ -81,4 +100,21 @@ unsigned	contains(const unsigned size, const unsigned index)
 
     printf("index [%d] out of range!\n", index);
     return 0;
+}
+
+/**
+ * @description {*} Get the given value and return a copy of it
+ * @params {value} The value to be copied
+ * @returns Pointer to the copyValue
+ **/
+void *get_copy_of_value(const void *value)
+{
+    void *value_copy;
+
+	if (!(value_copy = malloc(sizeof(void *))))
+		return NULL;
+
+	// TODO: Move it to ft_memcpy
+    memcpy(value_copy, value, sizeof(void *));
+    return value_copy;
 }
