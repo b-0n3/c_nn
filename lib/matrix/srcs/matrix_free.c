@@ -1,7 +1,5 @@
 #include "matrix.h"
 
-
-
 // ! @throws ILLEGAL_ARGUMENT_EXCEPTION
 void free_matrix(t_matrix *this){
     if (this == NULL)
